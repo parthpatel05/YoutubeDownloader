@@ -13,7 +13,8 @@ while not goodYsObject:
         print("Number of views: ",yt.views)
         print("Length of video: ",yt.length,"seconds")
         print("Description: ",yt.description)
-        print("Ratings: ",yt.rating)
+        print("channel: ",yt.channel_url)
+        print("thumb", yt.thumbnail_url)
 
         answer = input('Is this the desired video (yes:1 no:0): ')
         if answer == '1':
