@@ -1,0 +1,60 @@
+<MyGrid>
+    link: link1
+    FloatLayout:
+        size: root.width,root.height
+
+        GridLayout:
+            cols:3
+            pos_hint:{"y": .85}
+            size_hint: 1,.15
+
+            Label:
+                text: "Link"
+
+            TextInput:
+                id: link1
+                multiline: False
+
+            Button:
+                text: "Enter"
+                on_press: root.pressed()
+
+        GridLayout:
+            pos_hint: {"y": .15}
+            size_hint: 1, .7
+            cols: 2
+            GridLayout:
+                cols:2
+
+                Label:
+                    text: "Title"
+
+                Label:
+                    text: "hi"
+
+                Label:
+                    text: "Length(seconds)"
+
+                Label:
+                    text: "hi"
+
+                Label:
+                    text: "Channel"
+
+                Label:
+                    text: "hi"
+                
+
+            Label:
+                text: "Thumbnail"
+
+        GridLayout:
+            size_hint:1,.15
+            cols:2
+
+            Label:
+                text: "If this is the desired video press confirm"
+
+            Button:
+                text: "Confirm"
+                on_press: root.confirm()
