@@ -1,4 +1,11 @@
-<MyGrid>
+WindowManager:
+    id:screen
+    FirstWindow:
+    SecondWindow:
+
+<FirstWindow>
+    name: "first"
+    id: first
     link: link1
     FloatLayout:
         size: root.width,root.height
@@ -24,25 +31,28 @@
             size_hint: 1, .7
             cols: 2
             GridLayout:
-                cols:2
+                cols:1
 
                 Label:
                     text: "Title"
 
                 Label:
-                    text: "hi"
+                    id: title_label
+                    text: "Enter A Link"
 
                 Label:
                     text: "Length(seconds)"
 
                 Label:
-                    text: "hi"
+                    id: len_label
+                    text: "Enter A Link"
 
                 Label:
                     text: "Channel"
 
                 Label:
-                    text: "hi"
+                    id: chan_label
+                    text: "Enter A Link"
                 
 
             Label:
@@ -56,5 +66,104 @@
                 text: "If this is the desired video press confirm"
 
             Button:
+                id: btn
                 text: "Confirm"
-                on_press: root.confirm()
+                disabled: True
+                on_press: 
+                    root.confirm()
+                    app.root.current= "second"
+                    root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+
+
+    FloatLayout:
+        Label:
+            text:"Title"
+            id: result
+            pos_hint: {"x":.1, "y":.925}
+            size_hint: .9,.075
+
+        Button:
+            text:"Go Back"
+            pos_hint: {"y":.95}
+            size_hint: .1,.05
+            on_press: 
+                app.root.current= "first"
+                root.manager.transition.direction = "right"
+
+        Label:
+            text:"Audio Only"
+            pos_hint: {"y":.9}
+            size_hint: 1,.05
+
+        ScrollView:
+            pos_hint: {"y":.8}
+            size_hint: 1,.1
+            bar_width: 5
+            scroll_type: ['bars', 'content']
+
+            Label:  
+                size_hint_y: None
+                size_hint_x: 1
+                font_size: 12
+                height: self.texture_size[1]
+                orientation: "vertical"
+                id: audioLabel
+
+        Label:
+            text:"MP3 Only"
+            pos_hint: {"y":.75}
+            size_hint: 1,.05
+
+        ScrollView:
+            pos_hint: {"y":.5}
+            size_hint: 1,.25
+            bar_width: 5
+            scroll_type: ['bars', 'content']
+
+            Label:
+                size_hint_y: None
+                size_hint_x: 1
+                font_size: 12
+                height: self.texture_size[1]
+                orientation: "vertical"
+                id: mp3Label
+
+        Label:
+            text:"All Streams"
+            pos_hint: {"y":.45}
+            size_hint: 1,.05
+
+        ScrollView:
+            pos_hint: {"y":.05}
+            size_hint: 1,.4
+            bar_width: 5
+            scroll_type: ['bars', 'content']
+            
+            Label:
+                size_hint_y: None
+                size_hint_x: 1
+                font_size: 12
+                height: self.texture_size[1]
+                orientation: "vertical"
+ 
+                id: allLabel
+
+
+        GridLayout:
+            cols:3
+            size_hint: 1,.05
+
+            Label:
+                text: "Enter the Itag of stream"
+
+            TextInput:
+                id: itag1
+                multiline: False
+
+            Button:
+                text: "Download"
+                on_press: root.vidDown()
