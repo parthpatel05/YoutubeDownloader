@@ -22,9 +22,16 @@ WindowManager:
                 id: link1
                 multiline: False
 
-            Button:
-                text: "Enter"
-                on_press: root.pressed()
+            GridLayout:
+                cols:2
+                Button:
+                    text: "Clear"
+                    on_press: link1.text = ""
+
+                Button:
+                    text: "Enter"
+                    on_press: root.pressed()
+                
 
         GridLayout:
             pos_hint: {"y": .15}
@@ -50,13 +57,25 @@ WindowManager:
                 Label:
                     text: "Channel"
 
-                Label:
+                Button:
                     id: chan_label
                     text: "Enter A Link"
+                    on_release:
+  
+                        # importing webbrowser module
+                        import webbrowser
+                
+                        # it will open google window in your browser
+                        webbrowser.open(self.text)
+                
+                        print("see like this way you can write python supported code in kivy file")
+                
                 
 
-            Label:
-                text: "Thumbnail"
+            Image:
+                id: thumbImage
+                #text: "Thumbnail"
+                source: ''
 
         GridLayout:
             size_hint:1,.15
@@ -164,6 +183,16 @@ WindowManager:
                 id: itag1
                 multiline: False
 
-            Button:
-                text: "Download"
-                on_press: root.vidDown()
+            GridLayout:
+                cols:2
+                Button:
+                    id: downBtn
+                    disabled: False
+                    text: "Download"
+                    on_press: root.vidDown()
+
+                Button:
+                    id: highDownBtn
+                    disabled: False
+                    text: "Highest Res"
+                    on_press: root.downHigh()

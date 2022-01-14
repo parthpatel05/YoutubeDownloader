@@ -63,7 +63,7 @@ while downloadAgain:
         video = multStream(streams)
 
 
-    video.download()
+    
 
     downagain = input("Would you like to download another video (yes/no)")
     if downagain.lower == "yes":
